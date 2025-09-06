@@ -9,7 +9,7 @@ Frontend of this application is made using React.js with Bootstrap for styling.
 1. cd client
 2. npm install
 3. npm run dev
-4. Open the shown URL (usually http://localhost:5173) in your browser.
+4. Open the shown URL (usually http://localhost:4000) in your browser.
 
 ## Backend
 Backend of this application is made using Node.js, Express, and WebSockets (ws package).

@@ -10,7 +10,11 @@ export default function Join() {
   const { setSession } = useSession();
 
   function connect() {
-    const ws = new WebSocket('ws://localhost:4000');
+    const ws = new WebSocket(
+      process.env.NODE_ENV === "production"
+        ? `wss://${window.location.host}`
+        : "ws://localhost:4000"
+    );
     ws.onopen = () => {
       ws.send(
         JSON.stringify(

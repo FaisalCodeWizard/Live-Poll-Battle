@@ -252,7 +252,7 @@ setInterval(() => {
       ws.ping();
     } catch {}
   }
-}, 15000);
+}, 5000);
 
 server.listen(PORT, () => {
   console.log(`WebSocket server running at ws://localhost:${PORT}`);

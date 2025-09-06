@@ -67,7 +67,7 @@ export default function Room() {
         </div>
       )}
 
-      <h2 className="mb-3">Room {state?.code}</h2>
+      <h2 className="mb-3">Room Code: {state?.code}</h2>
       <p className="mb-4">
         <strong>Question:</strong> {state?.question}
       </p>

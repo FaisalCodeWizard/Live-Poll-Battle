@@ -2,16 +2,31 @@ import http from 'http';
 import express from 'express';
 import cors from 'cors';
 import { WebSocketServer } from 'ws';
+import path from 'path';
 
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Simple health check
-app.get('/health', (_req, res) => {
-  res.json({ ok: true, time: new Date().toISOString() });
-});
+
+//-------------- Deployment -------------
+
+const __dirname1 = path.resolve();
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname1, '../client/build')));
+
+  app.get('*',(req, res) => {
+    res.sendFile(path.resolve(__dirname1, "../client","build","index.html"))
+  })
+} else {
+  // Simple health check
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true, time: new Date().toISOString() });
+  }); 
+}
+
+//-------------- Deployment -------------
 
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
